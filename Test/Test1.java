@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.border.EtchedBorder;
 import java.awt.event.ActionListener;
@@ -23,8 +24,9 @@ public class Test1 extends JFrame {
 	private JPanel contentPane;
 	private JTextField text1;
 	private JTextField text2;
-	private JRadioButton RadioButton1;
+
 	private String gender;
+	private String degree;
 
 	/**
 	 * Launch the application.
@@ -62,7 +64,6 @@ public class Test1 extends JFrame {
 								new Color(0, 0, 0)),
 						"", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		form.setBounds(88, 88, 450, 246);
-
 		contentPane.add(form);
 		form.setLayout(null);
 
@@ -101,32 +102,48 @@ public class Test1 extends JFrame {
 		text2.setBounds(140, 76, 249, 20);
 		form.add(text2);
 		text2.setColumns(10);
-		
+
 		JLabel label = new JLabel("");
 		label.setForeground(new Color(255, 0, 0));
 		label.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		label.setBounds(30, 175, 387, 60);
 		form.add(label);
 
-		RadioButton1 = new JRadioButton("Male");
-		
-		RadioButton1.setBounds(140, 107, 92, 23);
+		JRadioButton rdmale = new JRadioButton("Male");
+		rdmale.setBounds(140, 107, 92, 23);
+		form.add(rdmale);
 
-		form.add(RadioButton1);
-
-		JRadioButton RadioButton2 = new JRadioButton("Female");
-		RadioButton2.addActionListener(new ActionListener() {
+		JRadioButton rdFemale = new JRadioButton("Female");
+		rdmale.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (RadioButton2.isSelected()) {
+				if (rdmale.isSelected()) {
+					gender = "Male";
+				}
+			}
+		});
+		rdFemale.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (rdFemale.isSelected()) {
 					gender = "Female";
 				}
 			}
 		});
-		RadioButton2.setBounds(265, 107, 99, 23);
-		form.add(RadioButton2);
+		rdFemale.setBounds(265, 107, 99, 23);
+		form.add(rdFemale);
+
+		ButtonGroup G = new ButtonGroup();
+		G.add(rdmale);
+		G.add(rdFemale);
 
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "", "PhD", "Master", "Be", }));
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				degree = comboBox.getSelectedItem().toString();
+			}
+		});
+		comboBox.setModel(new DefaultComboBoxModel(new String[] { "", "Student", "Teacher", "", }));
+
 		comboBox.setBounds(140, 139, 150, 22);
 		form.add(comboBox);
 
@@ -134,7 +151,8 @@ public class Test1 extends JFrame {
 		Button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String information;
-				information = "Code: " + text1.getText() + ",  Name: " + text2.getText()+",  gender: "+gender;
+				information = "Code: " + text1.getText() + ",  Name: " + text2.getText() + ",  gender: " + gender
+						+ ",  degree: " + degree;
 				label.setText(information);
 			}
 		});
@@ -155,6 +173,6 @@ public class Test1 extends JFrame {
 		Button2.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		Button2.setForeground(new Color(255, 0, 0));
 		contentPane.add(Button2);
-		
+
 	}
 }
