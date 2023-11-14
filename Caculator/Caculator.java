@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import java.awt.FlowLayout;
 
@@ -21,6 +22,7 @@ public class Caculator extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 					Caculator frame = new Caculator();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -42,22 +44,22 @@ public class Caculator extends JFrame {
 		
 		JPanel background = new JPanel();
 		setContentPane(background);
-		background.setLayout(null);
+		background.setLayout(new BorderLayout());
 
 		JPanel view1 = new JPanel();
 		view1.setBounds(34, 11, 419, 60);
-		background.add(view1);
 		view1.setLayout(new BorderLayout());
-
+		background.add(view1, BorderLayout.NORTH);
+		
 		JTextField text = new JTextField();
 		text.setBounds(0, 0, 409, 50);
 		text.setFont(new Font("Times New Roman", Font.PLAIN, 40));
-		view1.add(text);
+		view1.add(text, BorderLayout.NORTH);
 
 		JPanel view2 = new JPanel();
 		view2.setBounds(34, 100, 407, 233);
 		view2.setLayout(new GridLayout(4,5));
-		background.add(view2);
+		background.add(view2, BorderLayout.CENTER);
 		
 		JButton button7 = new JButton("7");
 		view2.add(button7);
