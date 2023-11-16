@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.server.UID;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,6 +18,7 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.border.CompoundBorder;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
+import javax.swing.SwingConstants;
 
 public class LogIn extends JFrame {
 
@@ -45,7 +47,7 @@ public class LogIn extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300, 200, 600, 400);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(128, 128, 128));
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -58,7 +60,7 @@ public class LogIn extends JFrame {
 		panel.setLayout(null);
 		setLocationRelativeTo(null);
 		
-		JLabel nhan = new JLabel("Log In");
+		JLabel nhan = new JLabel("Sign In");
 		nhan.setFont(new Font("Import", Font.ITALIC, 30));
 		nhan.setBounds(110 , 30, 200, 50);
 		nhan.setForeground(new Color(255,0,0));
@@ -86,12 +88,13 @@ public class LogIn extends JFrame {
 			
 	
 		
-		JButton nut = new JButton("Log In");
+		JButton nut = new JButton("Sign In");
 		nut.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(o1.getText());
 				System.out.println(o2.getText());
+			
 
 			}
 		});
@@ -99,6 +102,16 @@ public class LogIn extends JFrame {
 		nut.setForeground(new Color(255,0,0));
 		panel.add(nut);
 		
-	
+		JButton btnNewButton = new JButton("< back");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				View view = new View();
+				setVisible(false);
+			}
+		});
+		btnNewButton.setBounds(11, 11, 75, 23);
+		panel.add(btnNewButton);
+		setVisible(true);
+		
 	}
 }
